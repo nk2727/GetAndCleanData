@@ -13,7 +13,7 @@
 #
 library(data.table)
 library(dplyr)
-library(reshape)
+library(reshape2)
 
 #
 # The data for this project has been downloaded and extracted locally into the basedir directory
@@ -107,7 +107,7 @@ molten_data <-  melt(merged_data,id.vars=c("Activity", "Subject"), measured.vars
 #
 # use cast to calculate averages for each activity performed by each subject
 #
-tidy_averages <-cast(molten_data, Activity+Subject~variable, mean)
+tidy_averages <-dcast(molten_data, Activity+Subject~variable, mean)
 
 #
 # write the tidy-averages to a file
